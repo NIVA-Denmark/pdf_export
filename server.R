@@ -1,4 +1,5 @@
 library(shiny)
+library(tinytex)
 
 server <- function(input, output) {
   
