@@ -1,8 +1,11 @@
 library(shiny)
-library(tinytex)
-library(knitr)
+library(DT)
 
 server <- function(input, output) {
+  
+  n <- seq(1,10,1)
+  x <- rnorm(n=10,mean=1,sd=1)
+  df<-data.frame(n,x)
   
   output$report <- downloadHandler(
     # For PDF output, change this to "report.pdf"
@@ -15,7 +18,7 @@ server <- function(input, output) {
       file.copy("report.Rmd", tempReport, overwrite = TRUE)
       
       # Set up parameters to pass to Rmd document
-      params <- list(n = input$slider)
+      params <- list(n = input$slider, tabdata=df)
       
       # Knit the document, passing in the `params` list, and eval it in a
       # child of the global environment (this isolates the code in the document

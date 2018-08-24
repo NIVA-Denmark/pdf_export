@@ -3,11 +3,18 @@ title: "Dynamic report"
 output: html_document
 params:
   n: NA
+  tabdata: NA
 ---
 
 ```{r}
 # The `params` object is available in the document.
 params$n
+
+```
+# data
+```{r, echo=F}
+# The `tabdata` object is available in the document.
+datatable(params$tabdata,options = list(dom = 't',pageLength = 99))
 ```
 
 A plot of `params$n` random points.
